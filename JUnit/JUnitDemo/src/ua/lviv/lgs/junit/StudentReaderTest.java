@@ -42,6 +42,12 @@ public class StudentReaderTest {
 		Collection<Student> students = studentsReader.readFromFile("students.txt");
 		assertEquals("Expected size is 3", 3, students.size());
 	}
+	
+	@Test
+	public void shouldBeEmptyFile() throws IOException {
+		Collection<Student> students = studentsReader.readFromFile("empty.txt");
+		assertEquals("Expected size is 0", 0, students.size());
+	}
 
 	public StudentsReader getStudentsReader() {
 		StudentsReader reader = StudentsReaderFactory.getStudentsReader();
