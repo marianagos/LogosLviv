@@ -19,7 +19,7 @@ public class Main {
 
 		Author a = new Author(0, "Bogdan", "Melnychuk", 25);
 		Book b = new Book(0, "Book 1");
-		b.setAuthor(a);
+		//b.setAuthor(a);
 		
 		List<Book> books = new ArrayList<>();
 		
