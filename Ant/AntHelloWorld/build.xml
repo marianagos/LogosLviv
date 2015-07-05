@@ -1,0 +1,42 @@
+<project name="AntProject" default="run">
+
+	<property name="src" location="src" />
+	<property name="build" location="build"></property>
+	<property name="jar.dir" location="build/jar"></property>
+	<property name="jar.name" location="${jar.dir}/ant.jar"></property>
+	<property name="lib" location="lib"></property>
+	
+	<target name="clean">
+		<delete dir="${build}" />
+	</target>
+
+	<target name="init" depends="clean">
+		<mkdir dir="${build}" />
+	</target>
+
+	<path id="classpath">
+		<fileset dir="${lib}" includes="**/*.jar" />
+	</path>
+
+	<manifestclasspath property="jar.classpath" jarfile="${jar.name}">
+		<classpath refid="classpath" />
+	</manifestclasspath>
+
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${build}" classpathref="classpath" />
+	</target>
+
+	<target name="create.jar" depends="compile">
+		<mkdir dir="${jar.dir}"></mkdir>
+		<jar destfile="${jar.name}" basedir="${build}">
+			<manifest>
+				<attribute name="Main-Class" value="ua.lviv.lgs.Main" />
+				<attribute name="Class-Path" value="${jar.classpath}"></attribute>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="run" depends="create.jar">
+		<java jar="${jar.name}" fork="true" />
+	</target>
+</project>
