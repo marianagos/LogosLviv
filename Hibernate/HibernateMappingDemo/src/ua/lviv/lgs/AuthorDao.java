@@ -47,8 +47,10 @@ public class AuthorDao {
 		Session session = null;
 		try {
 			session = HibernateUtils.getSessionFactory().openSession();
-			Query query = session.createSQLQuery("select * from Author s where s.firstName = :paramName").addEntity(Author.class)
-					.setParameter("paramName", name);
+			Query query = session
+					.createSQLQuery(
+							"select * from Author s where s.firstName = :paramName")
+					.addEntity(Author.class).setParameter("paramName", name);
 			List<Author> result = query.list();
 			return result;
 		} finally {
@@ -65,6 +67,18 @@ public class AuthorDao {
 			cr.add(Restrictions.eq("lastName", lastName));
 			List<Author> result = cr.list();
 			return result;
+		} finally {
+			closeSession(session);
+		}
+	}
+
+	public void delete(Author author) {
+		Session session = null;
+		try {
+			session = HibernateUtils.getSessionFactory().openSession();
+			Transaction transaction = session.beginTransaction();
+			session.delete(author);
+			transaction.commit();
 		} finally {
 			closeSession(session);
 		}
