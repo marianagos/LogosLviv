@@ -11,6 +11,8 @@ public class HibernateUtils {
 		try {
 			return new AnnotationConfiguration().configure()
 					.addAnnotatedClass(Author.class)
+					.addAnnotatedClass(Movie.class)
+					.addAnnotatedClass(Category.class)
 					.addAnnotatedClass(Book.class).buildSessionFactory();
 		} catch (Throwable ex) {
 			System.err.println("Initial SessionFactory creation failed." + ex);
