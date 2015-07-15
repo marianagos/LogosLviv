@@ -20,7 +20,7 @@ public class Book {
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "author_id")
 	private Author author;
-	
+
 	public Book() {
 		// TODO Auto-generated constructor stub
 	}
@@ -45,11 +45,11 @@ public class Book {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
 	public Author getAuthor() {
 		return author;
 	}
-	
+
 	public void setAuthor(Author author) {
 		this.author = author;
 	}
@@ -58,6 +58,5 @@ public class Book {
 	public String toString() {
 		return "Book [id=" + id + ", title=" + title + "]";
 	}
-	
-	
+
 }

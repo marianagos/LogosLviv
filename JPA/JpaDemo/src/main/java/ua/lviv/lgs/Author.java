@@ -9,9 +9,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedQueries({ @NamedQuery(name = "Author.findByName", query = "SELECT a FROM Author a WHERE a.name = :name") })
 public class Author {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +25,7 @@ public class Author {
 	private int age;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "author")
 	private List<Book> books;
-	
+
 	public Author() {
 		// TODO Auto-generated constructor stub
 	}
@@ -60,14 +63,14 @@ public class Author {
 	public List<Book> getBooks() {
 		return books;
 	}
-	
+
 	public void setBooks(List<Book> books) {
 		this.books = books;
 	}
+
 	@Override
 	public String toString() {
 		return "Author [id=" + id + ", name=" + name + ", age=" + age + "]";
 	}
-	
-	
+
 }

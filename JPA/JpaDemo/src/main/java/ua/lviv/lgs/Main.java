@@ -1,18 +1,28 @@
 package ua.lviv.lgs;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import ua.lviv.lgs.dao.AuthorDao;
+import ua.lviv.lgs.dao.DaoFactory;
 
 public class Main {
 
 	public static void main(String[] args) {
-		EntityManagerFactory factory = Persistence
-				.createEntityManagerFactory("primary");
-		EntityManager em = factory.createEntityManager();
-		em.getTransaction().begin();
+		AuthorDao aDao = DaoFactory.getInstance().getAuthorDao();
+		Author a = new Author("Taras", 56);
+		aDao.create(a);
+
+		// EntityManagerFactory factory =
+		// Persistence.createEntityManagerFactory("primary");
+		// EntityManager em = factory.createEntityManager();
+		// em.getTransaction().begin();
+
+		// Query query = em.createNamedQuery("Author.findByName", Author.class)
+		// .setParameter("name", "Tolkien");
+		// List<Author> results = query.getResultList();
+		// System.out.println(results);
+
+		// AuthorDaoImpl daoImpl = new AuthorDaoImpl();
+		// daoImpl.setEntityManager(em);
+		// System.out.println(daoImpl.findAll());
 
 		// Add
 		// em.persist(new Author("Tolkien", 124));
@@ -34,11 +44,11 @@ public class Main {
 		// em.merge(b);
 
 		// Find All
-
-		List<Book> books = em.createQuery("from Book").getResultList();
-		for (Book book : books) {
-			System.out.println(book);
-		}
+		//
+		// List<Book> books = em.createQuery("from Book").getResultList();
+		// for (Book book : books) {
+		// System.out.println(book);
+		// }
 
 		// Find all TITLES
 		// List<String> titles = em.createQuery("select b.title from Book b")
@@ -51,9 +61,9 @@ public class Main {
 		// Author a = (Author) em.createQuery("from Author a where a.age=124")
 		// .getSingleResult(); // only when result is REALLY SINGLE!!!
 
-		em.getTransaction().commit();
-		em.close();
-		factory.close();
+//		em.getTransaction().commit();
+//		em.close();
+//		factory.close();
 
 	}
 
