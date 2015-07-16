@@ -1,24 +1,19 @@
 package ua.lviv.lgs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = "Author.findByName", query = "SELECT a FROM Author a WHERE a.name = :name") })
-public class Author {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+public class Author extends BasicEntity {
 	@Column
 	private String name;
 	@Column
@@ -34,14 +29,6 @@ public class Author {
 		super();
 		this.name = name;
 		this.age = age;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getName() {
@@ -64,13 +51,21 @@ public class Author {
 		return books;
 	}
 
+	public void addBook(Book book) {
+		if (books == null) {
+			books = new ArrayList<Book>();
+		}
+		books.add(book);
+		book.setAuthor(this);
+	}
+
 	public void setBooks(List<Book> books) {
 		this.books = books;
 	}
 
 	@Override
 	public String toString() {
-		return "Author [id=" + id + ", name=" + name + ", age=" + age + "]";
+		return "Author [id=" + getId() + ", name=" + name + ", age=" + age + "]";
 	}
 
 }

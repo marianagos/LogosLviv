@@ -12,13 +12,11 @@ import ua.lviv.lgs.dao.BaseDao;
 public class BaseDbDao<T> implements BaseDao<T> {
 
 	protected EntityManager em;
-	
-	public BaseDbDao() {
-		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("primary");
-		em = emFactory.createEntityManager();
+
+	public BaseDbDao(EntityManager em) {
+		this.em = em;
 	}
-	
-	
+
 	public void create(T a) {
 		em.getTransaction().begin();
 		em.persist(a);
@@ -28,18 +26,16 @@ public class BaseDbDao<T> implements BaseDao<T> {
 	public T findById(Object id) {
 		return em.find(getEntityClass(), id);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	protected final Class<T> getEntityClass() {
-		final Type type = getClass().getGenericSuperclass() instanceof ParameterizedType ? getClass()
-				.getGenericSuperclass() : getClass().getSuperclass()
-				.getGenericSuperclass();
+		final Type type = getClass().getGenericSuperclass() instanceof ParameterizedType ? getClass().getGenericSuperclass()
+				: getClass().getSuperclass().getGenericSuperclass();
 		if (type instanceof ParameterizedType) {
 			final ParameterizedType paramType = (ParameterizedType) type;
 			return (Class<T>) paramType.getActualTypeArguments()[0];
 		} else
-			throw new IllegalArgumentException(
-					"Could not guess entity class by reflection");
+			throw new IllegalArgumentException("Could not guess entity class by reflection");
 	}
 
 }

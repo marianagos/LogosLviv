@@ -1,14 +1,32 @@
 package ua.lviv.lgs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ua.lviv.lgs.dao.AuthorDao;
+import ua.lviv.lgs.dao.BookDao;
 import ua.lviv.lgs.dao.DaoFactory;
 
 public class Main {
 
 	public static void main(String[] args) {
+
 		AuthorDao aDao = DaoFactory.getInstance().getAuthorDao();
-		Author a = new Author("Taras", 56);
+		BookDao bDao = DaoFactory.getInstance().getBookDao();
+		Author a = new Author("Taras Shevchenko", 56);
+
+		Book b = new Book("Kobzar");
+		a.addBook(b);
+
 		aDao.create(a);
+
+		DaoFactory.getInstance().close();
+
+		// Book b = new Book("LOTR");
+		// b.setAuthor(aDao.findById(1));
+		// bDao.create(b);
+
+		// DaoFactory.getInstance().close();
 
 		// EntityManagerFactory factory =
 		// Persistence.createEntityManagerFactory("primary");
@@ -61,9 +79,9 @@ public class Main {
 		// Author a = (Author) em.createQuery("from Author a where a.age=124")
 		// .getSingleResult(); // only when result is REALLY SINGLE!!!
 
-//		em.getTransaction().commit();
-//		em.close();
-//		factory.close();
+		// em.getTransaction().commit();
+		// em.close();
+		// factory.close();
 
 	}
 
