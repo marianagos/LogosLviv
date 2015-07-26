@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
+<%@ page import="java.util.List"%>
+<%@ page import="ua.lviv.lgs.domain.Author"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,12 +18,20 @@
 			</tr>
 		</thead>
 		<tbody>
-			<jstl:forEach items="${authors}" var="author">
+
+			<%
+				List<String> list = (List<String>) request.getAttribute("authors");
+			%>
+
+			<%=list.size()%>
+
+
+			<%-- <jstl:forEach items="${authors}" var="author">
 				<tr>
 					<td>${author.name}</td>
 					<td>${author.age}</td>
 				</tr>
-			</jstl:forEach>
+			</jstl:forEach> --%>
 		</tbody>
 	</table>
 </body>
