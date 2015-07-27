@@ -18,20 +18,12 @@
 			</tr>
 		</thead>
 		<tbody>
-
-			<%
-				List<String> list = (List<String>) request.getAttribute("authors");
-			%>
-
-			<%=list.size()%>
-
-
-			<%-- <jstl:forEach items="${authors}" var="author">
+			<jstl:forEach items="${authors}" var="author">
 				<tr>
 					<td>${author.name}</td>
 					<td>${author.age}</td>
 				</tr>
-			</jstl:forEach> --%>
+			</jstl:forEach>
 		</tbody>
 	</table>
 </body>
