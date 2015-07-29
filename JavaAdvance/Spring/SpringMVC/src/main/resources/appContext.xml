@@ -4,7 +4,9 @@
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:task="http://www.springframework.org/schema/task"
-	xsi:schemaLocation="http://www.springframework.org/schema/aop 
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc
+         				http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+         				http://www.springframework.org/schema/aop 
 						http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
 						http://www.springframework.org/schema/beans 
 						http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
@@ -32,5 +34,7 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory"></property>
 	</bean>
 	
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:annotation-driven />
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>

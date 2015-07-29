@@ -18,6 +18,10 @@
 			</tr>
 		</thead>
 		<tbody>
+			<jstl:if test="${authors.size() < 3 }">
+				TRUE
+			</jstl:if>
+			<jstl:out value="${authors}"/>
 			<jstl:forEach items="${authors}" var="author">
 				<tr>
 					<td>${author.name}</td>

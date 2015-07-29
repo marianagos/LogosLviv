@@ -4,10 +4,6 @@ import java.util.List;
 
 import ua.lviv.lgs.domain.Author;
 
-public interface AuthorDao {
-	void insert(Author author);
-	
-	List<Author> getAll();
-	
+public interface AuthorDao extends BaseDao<Author> {
 	List<Author> getByName(String name);
 }
