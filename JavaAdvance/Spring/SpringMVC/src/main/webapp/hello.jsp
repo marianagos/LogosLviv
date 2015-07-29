@@ -11,6 +11,9 @@
 <link
 	href='<jstl:url value="/resources/bootstrap-3.3.5-dist/css/bootstrap.min.css" />'
 	rel="stylesheet">
+<link
+	href='<jstl:url value="/resources/bootstrap-3.3.5-dist/css/bootstrap-theme.min.css" />'
+	rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script
@@ -20,5 +23,6 @@
 <body>
 	<h1>Hello, world!</h1>
 	<a href="showAll">Show</a>
+	<a href="createAuthor">Create Author</a>	
 </body>
 </html>

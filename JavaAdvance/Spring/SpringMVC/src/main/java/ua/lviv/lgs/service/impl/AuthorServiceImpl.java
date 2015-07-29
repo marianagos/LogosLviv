@@ -2,6 +2,8 @@ package ua.lviv.lgs.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,7 @@ public class AuthorServiceImpl implements AuthorService {
 	@Autowired
 	private BookDao bookDao;
 
+	@Transactional
 	public void insertAuthor(Author author) {
 		dao.create(author);
 		Book b = new Book("Hello world");
