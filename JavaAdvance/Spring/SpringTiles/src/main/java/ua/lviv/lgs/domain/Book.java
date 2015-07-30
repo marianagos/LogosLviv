@@ -1,5 +1,7 @@
 package ua.lviv.lgs.domain;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -17,9 +20,11 @@ public class Book {
 	private int id;
 	@Column
 	private String title;
-	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "author_id")
 	private Author author;
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Shop> shops;
 	
 	public Book() {
 		// TODO Auto-generated constructor stub
@@ -54,6 +59,14 @@ public class Book {
 		this.author = author;
 	}
 
+	public List<Shop> getShops() {
+		return shops;
+	}
+	
+	public void setShops(List<Shop> shops) {
+		this.shops = shops;
+	}
+	
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", title=" + title + "]";

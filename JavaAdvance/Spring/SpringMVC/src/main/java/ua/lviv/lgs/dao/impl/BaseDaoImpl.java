@@ -9,7 +9,6 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import ua.lviv.lgs.dao.BaseDao;
-import ua.lviv.lgs.domain.Author;
 
 public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 	@PersistenceContext(unitName = "primary")

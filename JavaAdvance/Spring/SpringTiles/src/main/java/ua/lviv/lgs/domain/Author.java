@@ -23,7 +23,7 @@ public class Author {
 	private String name;
 	@Column
 	private int age;
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "author")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "author")
 	private List<Book> books;
 
 	public Author() {

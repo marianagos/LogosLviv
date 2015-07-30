@@ -10,6 +10,4 @@ public interface AuthorService {
 	List <Author> getAllAuthors();
 	
 	List <Author> getAuthorByName(String name);
-	
-	Author findById(int id);
 }

@@ -9,31 +9,29 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 @Entity
-@NamedQueries({ @NamedQuery(name = "Author.findByName", query = "select p from Author p where p.name=:name") })
-public class Author {
+public class Shop {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@Column
 	private String name;
 	@Column
-	private int age;
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "author")
+	private String city;
+	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Book> books;
-
-	public Author() {
+	
+	public Shop() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Author(String name, int age) {
+	public Shop(String name, String city) {
 		super();
 		this.name = name;
-		this.age = age;
+		this.city = city;
 	}
 
 	public int getId() {
@@ -52,12 +50,12 @@ public class Author {
 		this.name = name;
 	}
 
-	public int getAge() {
-		return age;
+	public String getCity() {
+		return city;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	public List<Book> getBooks() {
@@ -70,7 +68,8 @@ public class Author {
 
 	@Override
 	public String toString() {
-		return "Author [id=" + id + ", name=" + name + ", age=" + age + "]";
+		return "Shop [id=" + id + ", name=" + name + ", city=" + city + "]";
 	}
-
+	
+	
 }
