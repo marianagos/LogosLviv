@@ -21,11 +21,13 @@ public class AuthorController {
 	public String getAllAuthors(Model model) {
 		List<Author> authors = service.getAllAuthors();
 		model.addAttribute("authors", authors);
-		return "author-all";
+		return "authors";
+		//return "author-all";
 	}
 	@RequestMapping(value = "/createAuthor")
 	public String createPage() {
-		return "author-new";
+		return "newAuthor";
+		//return "author-new";
 	}
 
 	@RequestMapping(value = "/showAll", method = RequestMethod.POST)
