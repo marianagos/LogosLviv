@@ -5,6 +5,9 @@
                     http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
                     http://www.springframework.org/schema/security 
                     http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+	
+	<beans:import resource="classpath:/appContext.xml" />
+	
 	<http use-expressions="true">
 	
 		<intercept-url pattern="/j_spring_security_check" access="true" />
@@ -16,8 +19,6 @@
 			default-target-url="/main" authentication-failure-url="/main?auth=fail" />
 		<logout logout-url="/logout" logout-success-url="/main" />
 	</http>
-
-	<beans:bean id="customAuthenticationProvider" class="ua.lviv.lgs.service.impl.CustomSecurityProvider"></beans:bean>
 
 	<authentication-manager>
 		 <authentication-provider ref="customAuthenticationProvider" />
