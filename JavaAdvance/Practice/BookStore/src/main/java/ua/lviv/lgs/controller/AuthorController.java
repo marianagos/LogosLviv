@@ -43,7 +43,7 @@ public class AuthorController {
 		return "authors";
 	}
 
-	@RequestMapping(value = "/createAuthor")
+	@RequestMapping(value = "/admin/createAuthor")
 	public String createPage() {
 		return "newAuthor";
 	}

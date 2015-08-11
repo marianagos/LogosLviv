@@ -11,4 +11,11 @@ public class MainController {
 		System.out.println("in contoller");
 		return "main";
 	}
+	
+
+	@RequestMapping(value = "/loginPage")
+	public String login() {
+		System.out.println("in login");
+		return "main";
+	}
 }

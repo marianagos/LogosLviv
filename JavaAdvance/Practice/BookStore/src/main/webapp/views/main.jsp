@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,15 +34,30 @@
           <a class="navbar-brand" href="#">Project name</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
+        
+        <sec:authorize access="isAuthenticated()">
+    		<div class="navbar-form navbar-right"> 
+        		<a href="<jstl:url value='logout' />">Logout</a> 
+       		</div>
+		</sec:authorize>
+		
+		<sec:authorize access="!isAuthenticated()">
+		     <form class="navbar-form navbar-right" action="<jstl:url value='j_spring_security_check' />" method="POST">
+           		 <div class="form-group">
+              		<input type="text" placeholder="Email" class="form-control">
+            	</div>
+            	<div class="form-group">
+              		<input type="password" placeholder="Password" class="form-control">
+            	</div>
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            	<button type="submit" class="btn btn-success">Sign in</button>
+          	</form>
+		</sec:authorize>
+        
+        
+        
+         
+           
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
