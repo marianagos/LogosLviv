@@ -38,7 +38,6 @@ public class AuthorServiceImpl implements AuthorService {
 		return dao.getByName(name);
 	}
 
-	@Override
 	public Author findById(int id) {
 		return dao.findById(id);
 	}
