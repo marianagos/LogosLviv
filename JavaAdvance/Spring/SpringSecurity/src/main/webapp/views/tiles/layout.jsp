@@ -10,10 +10,6 @@
 <link href=<c:url value="/resources/css/style.css"/> rel="stylesheet">
 </head>
 <body>
-    <div id="style">
-    	sdfdsfsdfdsfksdflkdjgdfkjgfdkljgdflkjgdf
-    	gdfgdfsgdfsgdfsgdfg
-    </div>
 	<div>
 		<tiles:insertAttribute name="header"></tiles:insertAttribute>
 	</div>

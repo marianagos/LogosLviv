@@ -10,23 +10,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ua.lviv.lgs.dao.AuthorDao;
 import ua.lviv.lgs.domain.Author;
-import ua.lviv.lgs.service.AuthorServce;
 
 @Controller
 public class AuthorController {
 	@Autowired
-	private AuthorServce service;
+	private AuthorDao service;
 	
 	@RequestMapping(value = "/showAll")
 	public String getAllAuthors(Model model) {
-		List<Author> authors = service.getAuthors();
+		List<Author> authors = service.getAll();
 		model.addAttribute("authors", authors);
 		return "author-all";
 	}
 	
-	//@Secured({"Admin","ROLE_ADMIN"})
-	@Secured("Admin")
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(value = "/createAuthor")
 	public String createPage() {
 		return "author-new";
@@ -37,7 +36,7 @@ public class AuthorController {
 			@RequestParam(value="age") String age) {
 		int ageInt = Integer.parseInt(age);
 		Author a = new Author(name, ageInt);
-		service.insertAuthor(a);
+		service.insert(a);
 		return "redirect:/showAll";
 	}
 	

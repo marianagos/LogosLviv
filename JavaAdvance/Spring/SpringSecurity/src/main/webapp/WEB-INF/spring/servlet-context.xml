@@ -14,7 +14,7 @@
         http://www.springframework.org/schema/security/spring-security-3.2.xsd">
         
 	<import resource="classpath:/META-INF/appContext.xml" />
-	<!-- security:global-method-security secured-annotations="enabled"/ -->
+	<security:global-method-security secured-annotations="enabled"/>
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">

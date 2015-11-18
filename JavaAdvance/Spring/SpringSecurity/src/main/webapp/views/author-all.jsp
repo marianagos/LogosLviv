@@ -25,7 +25,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<sec:authorize access="hasRole('Admin')">
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
 	<a href="createAuthor">New Author</a>
 	</sec:authorize>
 </body>
