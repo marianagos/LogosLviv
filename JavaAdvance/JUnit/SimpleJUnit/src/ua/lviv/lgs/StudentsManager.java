@@ -10,6 +10,9 @@ public class StudentsManager {
 	public StudentsManager(List<Student> students) {
 		this.students = students;
 	}
+	
+	public StudentsManager() {
+	}
 
 	public List<Student> findByName(String name) {
 		if (name == null) {
