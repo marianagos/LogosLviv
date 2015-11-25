@@ -20,6 +20,7 @@ public class AuthorController {
 	@RequestMapping(value = "/showAll")
 	public String getAllAuthors(Model model) {
 		List<Author> authors = service.getAll();
+		System.out.println("ok");
 		model.addAttribute("authors", authors);
 		return "authors";
 		//return "author-all";
